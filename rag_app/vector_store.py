@@ -24,7 +24,7 @@ def split_documents(documents, chunk_size=CHUNK_SIZE, chunk_overlap=CHUNK_OVERLA
 
 def build_vector_store(chunks, embedding_model=EMBEDDING_MODEL):
     """Builds an in-memory FAISS vector store from document chunks."""
-    embeddings = GoogleGenerativeAIEmbeddings(model=embedding_model,api_key=API_KEY)
+    embeddings = GoogleGenerativeAIEmbeddings(model=embedding_model,google_api_key=API_KEY)
     vector_store = FAISS.from_documents(chunks, embeddings)
     return vector_store
 
@@ -34,7 +34,7 @@ def save_vector_store(vector_store: FAISS, path: str):
 
 
 def load_vector_store(path: str, embedding_model=EMBEDDING_MODEL) -> FAISS:
-    embeddings = GoogleGenerativeAIEmbeddings(model=embedding_model,api_key=API_KEY)
+    embeddings = GoogleGenerativeAIEmbeddings(model=embedding_model,google_api_key=API_KEY)
     return FAISS.load_local(path, embeddings, allow_dangerous_deserialization=True)
 
 

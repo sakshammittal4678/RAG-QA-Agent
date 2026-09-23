@@ -51,7 +51,7 @@ def format_chat_history(history):
 
 
 def build_chain(retriever, model=LLM_MODEL, temperature=TEMPERATURE):
-    llm = ChatGoogleGenerativeAI(model=model, temperature=temperature,api_key=API_KEY)
+    llm = ChatGoogleGenerativeAI(model=model, temperature=temperature,google_api_key=API_KEY)
     prompt = PromptTemplate(
         template=PROMPT_TEMPLATE,
         input_variables=["context", "question", "chat_history"],
