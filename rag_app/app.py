@@ -19,7 +19,7 @@ if not os.getenv("GOOGLE_API_KEY") and "GOOGLE_API_KEY" in st.secrets:
 st.set_page_config(page_title="Multi-Doc RAG QA", page_icon="📄")
 st.title("📄 Multi-Document RAG QA")
 
-if not os.getenv("GOOGLE_API_KEY"):
+if not st.secrets["GOOGLE_API_KEY"]:
     st.error("GOOGLE_API_KEY not found. Add it to a .env file in this folder.")
     st.stop()
 
