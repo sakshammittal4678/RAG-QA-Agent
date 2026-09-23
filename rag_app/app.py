@@ -13,6 +13,8 @@ from vector_store import split_documents, build_vector_store, get_retriever
 from chain import build_chain, stream_answer
 
 load_dotenv()
+if not os.getenv("GOOGLE_API_KEY") and "GOOGLE_API_KEY" in st.secrets:
+    os.environ["GOOGLE_API_KEY"] = st.secrets["GOOGLE_API_KEY"]
 
 st.set_page_config(page_title="Multi-Doc RAG QA", page_icon="📄")
 st.title("📄 Multi-Document RAG QA")
