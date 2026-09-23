@@ -3,12 +3,12 @@ chain.py
 Builds the RAG prompt and the runnable chain (retrieve -> format -> prompt -> generate -> parse).
 """
 
-from langchain_openai import ChatOpenAI
+from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_core.prompts import PromptTemplate
 from langchain_core.runnables import RunnableParallel, RunnablePassthrough, RunnableLambda
 from langchain_core.output_parsers import StrOutputParser
 
-LLM_MODEL = "gpt-4o-mini"
+LLM_MODEL = "gemini-2.5-flash"
 TEMPERATURE = 0.2
 
 PROMPT_TEMPLATE = """
@@ -49,7 +49,7 @@ def format_chat_history(history):
 
 
 def build_chain(retriever, model=LLM_MODEL, temperature=TEMPERATURE):
-    llm = ChatOpenAI(model=model, temperature=temperature, streaming=True)
+    llm = ChatGoogleGenerativeAI(model=model, temperature=temperature)
     prompt = PromptTemplate(
         template=PROMPT_TEMPLATE,
         input_variables=["context", "question", "chat_history"],
